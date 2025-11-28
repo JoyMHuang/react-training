@@ -1,21 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './HomePage';
+import DetailPage from './DetailPage';
+import CalculatorPage from './CalculatorPage';
+import NavigationMenu from './components/NavigationMenu';
+import PageLayout from './components/PageLayout';
 
 export function ManulifePage(props) {
   return (
-    <div className='app'>
-      <div className='navigation'>
-        <div className='logo'>
-          <img alt='logo' src={logo} />
-        </div>
+    <Router>
+      <div className='app'>
+        <NavigationMenu />
+        <PageLayout>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/details' element={<DetailPage />} />
+            <Route path='/calculator' element={<CalculatorPage />} />
+          </Routes>
+        </PageLayout>
       </div>
-      <div className='main'>
-        <div className='header'>
-          Welcome to React Training
-        </div>
-        <div className='content'>
-          {props.children}
-        </div>
-      </div>
-    </div>
-  )
+    </Router>
+  );
 }
